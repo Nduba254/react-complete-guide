@@ -1,9 +1,9 @@
 .Person {
-width: 50%;
+width: 30%;
 margin: auto;
 border: 1px solid rgba(209, 27, 27, 0.933);
-box-shadow: 0 2px 3px #cccccc;
-padding:10px;
+box-shadow: 0 6px 9px #cccccc;
+padding:5px;
 text-align: center;
 
 }

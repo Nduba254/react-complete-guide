@@ -7,9 +7,11 @@ import './Person/Person.css';
 class App extends Component {
   state = {
     persons: [
-      { id: 'asd', name: 'Madeline', age: 20 },
-      { id: 'asf', name: 'Lydiah', age: 22 },
-      { id: 'asg', name: 'Russ', age: 31 }
+      { id: 'asd', name: 'Madeline',   age: 20 },
+
+      { id: 'asf', name: 'Lydiah',   age: 22 },
+
+      { id: 'asg', name: 'Russ',     age: 31 }
     ],
     otherState: 'some other value',
     showPersons: false
@@ -49,7 +51,8 @@ class App extends Component {
   
   render() {
     const style ={
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
@@ -57,7 +60,7 @@ class App extends Component {
     };
 
     let persons = null;
-
+//dynamically rendering content (outputs our content to our template/fn)
     if (this.state.showPersons){
       persons = (
         <div>
@@ -67,20 +70,32 @@ class App extends Component {
             name={person.name}
             age={person.age}
             key = {person.id} 
-            changed = {(event) => this.nameChangeHandler( event, person.id)}                    />
+            changed = {(event) => this.nameChangeHandler( event, person.id)} />
 
-          })}
-          
+          })} 
           </div>
-      )
+      );
+      style.backgroundColor= 'red';
     }
+
+    let classes = [ ];
+      if (this.state.persons.length <=2 ) {
+        classes.push('red'); //classes =['red]
+      }
+      if (this.state.persons.length <= 1){
+        classes.push('bold'); //classes = ['red', 'bold']
+      }
+
+
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
-        <p>This is really working!</p>
+        <p className = {classes.join (' ')} > This is really working!</p>
         <button 
         style={style}
-        onClick={this.togglePersonsHandler}>Toggle persons</button>       
+        onClick={this.togglePersonsHandler}>Toggle persons</button> 
+
+
         {persons}          
       </div>
     );
