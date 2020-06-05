@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+
 import './App.css';
 import Person from './Person/Person';
-import './Person/Person.css';
+//import './Person/Person.css';
+
 
 
 class App extends Component {
@@ -57,6 +59,10 @@ class App extends Component {
       border: '1px solid blue',
       padding: '8px',
       cursor: 'pointer',
+      ':hover': {
+        baclgroundColor: 'lightgreen',
+        color: 'black'
+      }
     };
 
     let persons = null;
@@ -75,10 +81,15 @@ class App extends Component {
           })} 
           </div>
       );
-      style.backgroundColor= 'red';
+    //  style.backgroundColor= 'red';
+      //over right the hover to get new feature- wrap in square brackets since it is string.
+      //style[':hover']= {
+        //baclgroundColor: 'salmon',
+        //color: 'black'
+      //};
     }
 
-    let classes = [ ];
+    const classes = [ ];
       if (this.state.persons.length <=2 ) {
         classes.push('red'); //classes =['red]
       }
@@ -88,16 +99,19 @@ class App extends Component {
 
 
     return (
+
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p className = {classes.join (' ')} > This is really working!</p>
-        <button 
-        style={style}
-        onClick={this.togglePersonsHandler}>Toggle persons</button> 
+       <button
+      className ="button"
+        onClick={this.togglePersonsHandler}> Toggle persons
+        </button>
 
 
         {persons}          
       </div>
+    
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   }
