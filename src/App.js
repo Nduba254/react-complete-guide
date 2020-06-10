@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 //import './Person/Person.css';
 
@@ -22,7 +22,7 @@ class App extends Component {
 
   nameChangeHandler = (event, id ) => {
     const personIndex = this.state.persons.findIndex(p =>{
-      return p.id == id;
+      return p.id === id;
     } );
 
     const person ={
@@ -52,59 +52,39 @@ class App extends Component {
   }
   
   render() {
-    const style ={
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        baclgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    };
-
     let persons = null;
+
+    let btnClass='';
 //dynamically rendering content (outputs our content to our template/fn)
     if (this.state.showPersons){
       persons = (
         <div>
           {this.state.persons.map((person, index)=>{
-            return <Person
-            click= { () => this.deletePersonHandler(index)}
-            name={person.name}
-            age={person.age}
-            key = {person.id} 
-            changed = {(event) => this.nameChangeHandler( event, person.id)} />
+            return(  <Person
+              click= { () => this.deletePersonHandler(index)}
+              name={person.name}
+              age={person.age}
+              key = {person.id} 
+              changed = {(event) => this.nameChangeHandler( event, person.id)} /> )
+           
 
           })} 
           </div>
       );
-    //  style.backgroundColor= 'red';
-      //over right the hover to get new feature- wrap in square brackets since it is string.
-      //style[':hover']= {
-        //baclgroundColor: 'salmon',
-        //color: 'black'
-      //};
+   btnClass = classes.Red;
     }
 
-    const classes = [ ];
+    const assignedClasses = [ ];
       if (this.state.persons.length <=2 ) {
-        classes.push('red'); //classes =['red]
+        assignedClasses.push(classes.red); //classes =['red]
       }
       if (this.state.persons.length <= 1){
-        classes.push('bold'); //classes = ['red', 'bold']
+        assignedClasses.push(classes.bold); //classes = ['red', 'bold']
       }
-
-
-    return (
-
-      <div className="App">
+   return (<div className= {classes.App}>
         <h1>Hi, I'm a React App</h1>
-        <p className = {classes.join (' ')} > This is really working!</p>
-       <button
-      className ="button"
+        <p className = {assignedClasses.join ('')} > This is really working!</p>
+       <button className ={btnClass.join('')}
         onClick={this.togglePersonsHandler}> Toggle persons
         </button>
 
