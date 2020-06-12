@@ -54,8 +54,9 @@ class App extends Component {
   render() {
     let persons = null;
 
-    let btnClass='';
-//dynamically rendering content (outputs our content to our template/fn)
+    let btnClass = [ ] ;
+
+    //dynamically rendering content (outputs our content to our template/fn)
     if (this.state.showPersons){
       persons = (
         <div>
@@ -71,7 +72,7 @@ class App extends Component {
           })} 
           </div>
       );
-   btnClass = classes.Red;
+      btnClass.push(classes.red);
     }
 
     const assignedClasses = [ ];
@@ -81,10 +82,12 @@ class App extends Component {
       if (this.state.persons.length <= 1){
         assignedClasses.push(classes.bold); //classes = ['red', 'bold']
       }
-   return (<div className= {classes.App}>
+   return (
+
+      <div className= {classes.App}>
         <h1>Hi, I'm a React App</h1>
-        <p className = {assignedClasses.join ('')} > This is really working!</p>
-       <button className ={btnClass.join('')}
+        <p className = {assignedClasses.join(' ')} >This is really working!</p>
+       <button className={btnClass.join(' ')}
         onClick={this.togglePersonsHandler}> Toggle persons
         </button>
 
