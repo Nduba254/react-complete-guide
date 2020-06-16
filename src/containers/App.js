@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-
 import classes from './App.css';
-import Person from './Person/Person';
+import Person from '../Components/Persons/Person/Person';
 //import './Person/Person.css';
-
-
 
 class App extends Component {
   state = {
@@ -18,7 +15,6 @@ class App extends Component {
     otherState: 'some other value',
     showPersons: false
   };
-
 
   nameChangeHandler = (event, id ) => {
     const personIndex = this.state.persons.findIndex(p =>{
@@ -60,18 +56,13 @@ class App extends Component {
     if (this.state.showPersons){
       persons = (
         <div>
-          {this.state.persons.map((person, index)=>{
-            return(  <Person
-              click= { () => this.deletePersonHandler(index)}
-              name={person.name}
-              age={person.age}
-              key = {person.id} 
-              changed = {(event) => this.nameChangeHandler( event, person.id)} /> )
-           
-
-          })} 
+       <Persons persons = {this.state.persons}
+       clicked ={this.state.clicked}
+       changed = {this.state.changed} />
           </div>
+
       );
+      
       btnClass.push(classes.red);
     }
 
@@ -90,7 +81,6 @@ class App extends Component {
        <button className={btnClass.join(' ')}
         onClick={this.togglePersonsHandler}> Toggle persons
         </button>
-
 
         {persons}          
       </div>
