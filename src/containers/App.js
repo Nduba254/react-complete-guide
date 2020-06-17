@@ -67,6 +67,7 @@ class App extends Component {
     console.log('[App.js] render')
     let persons = null;
 
+<<<<<<< HEAD:src/containers/App.js
     //dynamically rendering content (outputs our content to our template/fn)
     if (this.state.showPersons){
       persons = <Persons 
@@ -74,6 +75,45 @@ class App extends Component {
        clicked ={this.deletePersonHandler}
        changed = {this.nameChangeHandler} />
     };
+=======
+    let btnClass = [ ] ;
+    
+    //dynamically rendering content (outputs our content to our template/fn)
+    if (this.state.showPersons){
+      persons = (
+        <div>
+          {this.state.persons.map((person, index)=>{
+            return(  <Person
+              click= { () => this.deletePersonHandler(index)}
+              name={person.name}
+              age={person.age}
+              key = {person.id} 
+              changed = {(event) => this.nameChangeHandler( event, person.id)} /> )
+           
+
+          })} 
+          </div>
+      );
+      btnClass.push(classes.red);
+    }
+
+    const assignedClasses = [ ];
+    if (this.state.persons.length <=2 ) {
+      assignedClasses.push(classes.red); //classes =['red]
+    }
+    if (this.state.persons.length <= 1){
+      assignedClasses.push(classes.bold); //classes = ['red', 'bold']
+    };
+
+   return (
+   
+      <div className= {classes.App}>
+        <h1>Hi, I'm a React App</h1>
+        <p className = {assignedClasses.join('')} >This is really working!</p>
+       <button className={btnClass.join('')}
+        onClick={this.togglePersonsHandler}> Toggle persons
+        </button>
+>>>>>>> d0df53a7ebc379c0249067a6c978bf6fcb346100:src/App.js
 
    return (
 
